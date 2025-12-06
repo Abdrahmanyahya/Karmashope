@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Cat() {
+function Blog() {
   return (
     <div>
-      <h2>Cat</h2>
+      <h2>BLOG</h2>
     </div>
   )
 }
 
-export default Cat
+export default Blog
