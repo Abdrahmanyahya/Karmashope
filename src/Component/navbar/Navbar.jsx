@@ -151,6 +151,8 @@ const [anchorE3, setAnchorE3] = React.useState(null);
     }}
   >
     <Link onClick={handleCloseblog} sx={{display:"list-item", textDecoration:"none",color:"black",p:"10px"}} variant='body2'  component={Routerlink} to="authlayout/Pages/Login">LOGIN</Link>
+        <Link onClick={handleCloseblog} sx={{display:"list-item", textDecoration:"none",color:"black",p:"10px"}} variant='body2'  component={Routerlink} to="authlayout/Pages/reg">REGISTER</Link>
+
     <Link onClick={handleCloseblog} sx={{display:"list-item", textDecoration:"none",color:"black",p:"10px"}} variant='body2' component={Routerlink} to="Pages/Traking">TRACKING</Link>
     <Link onClick={handleCloseblog} sx={{display:"list-item", textDecoration:"none",color:"black",p:"10px"}} variant='body2' component={Routerlink} to="Pages/element">ELEMENTS</Link>
 

@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router";
 import Home from "../Pages/home/Home";
 import MainLayout from "../layout/MainLayout";
 import AuthnLayout from "../layout/AuthnLayout";
-import Register from "../Pages/register/Register";
 import Contact from "../Pages/contact/Contact";
 import Confirmintion from "../Pages/cat/Confirmintion";
 import ProductChekout from "../Pages/cat/ProductChekout";
@@ -14,6 +13,7 @@ import BlogDet from "../Pages/Blog/BlogDet";
 import Element from "../Pages/PAGespage/Element";
 import Traking from "../Pages/PAGespage/Traking";
 import Login from "../Pages/PAGespage/Login";
+import Reg from "../Pages/PAGespage/Reg";
 
 
 
@@ -92,8 +92,8 @@ path:"Pages/Login",
 element:<Login></Login>
 },
         {
-            path:"reg",
-            element:<Register></Register>
+            path:"Pages/reg",
+            element:<Reg></Reg>
         }
     ]
   }

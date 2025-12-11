@@ -5,18 +5,34 @@ import { Margin } from '@mui/icons-material'
 import { Box, positions } from '@mui/system'
 import { Button, TextField, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
+function Reg() {
 
-function Login() {
+    const {register,handleSubmit}=useForm();
+
+
+    const registerform= async(values)=>{
+        console.log(values);
+        try{
+          const responce = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Register`,values);
+          console.log(responce);
+        }catch(err){
+
+        }finally{
+
+        }
+    }
   return (
     <div>
-      <Box>
+<Box>
   <Hero sx={{position: "relative"}}>
   <Typography component="h2" variant='h3' sx={{position:"absolute", top:"60%" ,left:"80%", transform: "translate(-50%, -50%)", color:"white",fontWeight:"600px"
-}}>Login</Typography>
+}}>Register</Typography>
 
 <Typography component="h2" variant='h6' sx={{position:"absolute", top:"75%" ,left:"80.5%",transform: "translate(-50%, -50%)",color:"white"}}>Home </Typography>
 <ArrowForwardIcon fontSize='small' sx={{position:"absolute", top:"75%" ,left:"84%",transform: "translate(-50%, -50%)",color:"white"}}></ArrowForwardIcon>
-<Typography component="h2" variant='h6' sx={{position:"absolute", top:"75%" ,left:"87%",transform: "translate(-50%, -50%)",color:"white"}}>Login </Typography>
+<Typography component="h2" variant='h6' sx={{position:"absolute", top:"75%" ,left:"88%",transform: "translate(-50%, -50%)",color:"white"}}>Register </Typography>
 
 
 
@@ -43,22 +59,21 @@ function Login() {
     </Box>
 
       </Box>
-      <Box component="form" sx={{padding:"100px", display:"flex" ,flexDirection:"column",gap:"30px",}}>
-<TextField id="standard-basic" label="email" name='email'  variant="standard" />
-<TextField id="standard-basic" label="password" name='password' variant="standard" />
-<TextField id="standard-basic" label="userName" name='userName' variant="standard" />
-<TextField id="standard-basic" label="fullName" name='fullName' variant="standard" />
-<TextField id="standard-basic" label="phoneNumber" name='phoneNumber' variant="standard" />
-<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}}>Register</Button>
+      <Box component="form" onSubmit={handleSubmit(registerform)} sx={{padding:"100px", display:"flex" ,flexDirection:"column",gap:"30px",}}>
+<TextField  {...register('email')} label="email"   variant="standard" />
+<TextField  {...register('password')} label="password"  variant="standard" />
+<TextField  {...register('userName')} label="userName"  variant="standard" />
+<TextField  {...register('fullName')} label="fullName"  variant="standard" />
+<TextField  {...register('phoneNumber')} label="phoneNumber"  variant="standard" />
+<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}} type='submit'>Register</Button>
 
 
       </Box>
 </Box>
     
 
-
     </div>
   )
 }
 
-export default Login
+export default Reg
