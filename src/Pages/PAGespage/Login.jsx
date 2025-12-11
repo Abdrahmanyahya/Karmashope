@@ -5,8 +5,26 @@ import { Margin } from '@mui/icons-material'
 import { Box, positions } from '@mui/system'
 import { Button, TextField, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
 
 function Login() {
+const {register,handleSubmit}=useForm();
+
+
+    const loginform= async(values)=>{
+        console.log(values);
+        try{
+          const responce = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Login`,values);
+          console.log(responce);
+        }catch(err){
+          console.log(err);
+
+        }finally{
+
+        }
+    }
+
   return (
     <div>
       <Box>
@@ -43,13 +61,11 @@ function Login() {
     </Box>
 
       </Box>
-      <Box component="form" sx={{padding:"100px", display:"flex" ,flexDirection:"column",gap:"30px",}}>
-<TextField id="standard-basic" label="email" name='email'  variant="standard" />
-<TextField id="standard-basic" label="password" name='password' variant="standard" />
-<TextField id="standard-basic" label="userName" name='userName' variant="standard" />
-<TextField id="standard-basic" label="fullName" name='fullName' variant="standard" />
-<TextField id="standard-basic" label="phoneNumber" name='phoneNumber' variant="standard" />
-<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}}>Register</Button>
+      <Box component="form"  onSubmit={handleSubmit(loginform)} sx={{padding:"100px", display:"flex" ,flexDirection:"column",gap:"30px",}}>
+<TextField   {...register('email')} label="email"   variant="standard" />
+<TextField {...register('password')} label="password"  variant="standard" />
+
+<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}}>Log in</Button>
 
 
       </Box>
