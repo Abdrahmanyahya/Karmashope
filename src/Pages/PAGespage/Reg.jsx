@@ -7,6 +7,8 @@ import { Button, TextField, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import login from "../../assets/login.jpg";
+
 function Reg() {
 
     const {register,handleSubmit}=useForm();
@@ -42,7 +44,7 @@ function Reg() {
     <Box sx={{display:"flex"}}>
       <Box padding="80px" sx={{position:"relative"}}>
 <Box sx={{filter:"brightness(50%)" }}>
-      <img src='/src/assets/login.jpg'></img>
+      <img src={login}></img>
       
     </Box>
     <Box sx={{position:"absolute" ,top:"300px",left:"280px",color:"white"}}>

@@ -10,6 +10,19 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import DialerSipIcon from '@mui/icons-material/DialerSip';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import i1 from "../../assets/i1.jpg";
+import i2 from "../../assets/i2.jpg";
+
+import i3 from "../../assets/i3.jpg";
+
+import i4 from "../../assets/i4.jpg";
+import i5 from "../../assets/i5.jpg";
+import i6 from "../../assets/i6.jpg";
+import i7 from "../../assets/i7.jpg";
+import i8 from "../../assets/i8.jpg";
+
+
+
 function Footer() {
   const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -92,16 +105,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   <Typography component="h2" variant='h5' color='white' marginBottom="20px">Instragram Feed</Typography>
 
   <Typography component="div" display="flex" gap="10px" marginBottom="10px">
-    <img src='/src/assets/i1.jpg' width="60px" height="60px"></img>
-        <img src='/src/assets/i2.jpg' width="60px" height="60px"></img>
-    <img src='/src/assets/i3.jpg' width="60px" height="60px"></img>
-    <img src='/src/assets/i4.jpg' width="60px" height="60px"></img>
+    <img src={i1} width="60px" height="60px"></img>
+        <img src={i2} width="60px" height="60px"></img>
+    <img src={i3} width="60px" height="60px"></img>
+    <img src={i4} width="60px" height="60px"></img>
   </Typography>
 <Typography component="div" display="flex" gap="10px">
-    <img src='/src/assets/i5.jpg' width="60px" height="60px"></img>
-    <img src='/src/assets/i6.jpg' width="60px" height="60px"></img>
-    <img src='/src/assets/i7.jpg' width="60px" height="60px"></img>
-    <img src='/src/assets/i8.jpg' width="60px" height="60px"></img>
+    <img src={i5} width="60px" height="60px"></img>
+    <img src={i6} width="60px" height="60px"></img>
+    <img src={i7} width="60px" height="60px"></img>
+    <img src={i8} width="60px" height="60px"></img>
 
   </Typography>
 </Grid>
