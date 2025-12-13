@@ -14,6 +14,7 @@ import Element from "../Pages/PAGespage/Element";
 import Traking from "../Pages/PAGespage/Traking";
 import Login from "../Pages/PAGespage/Login";
 import Reg from "../Pages/PAGespage/Reg";
+import SentCode from "../Pages/sentcode/SentCode";
 
 
 
@@ -94,6 +95,10 @@ element:<Login></Login>
         {
             path:"Pages/reg",
             element:<Reg></Reg>
+        },
+        {
+          path:"Pages/sentcode",
+          element:<SentCode></SentCode>
         }
     ]
   }

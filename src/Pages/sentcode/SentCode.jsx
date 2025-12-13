@@ -12,9 +12,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Loginvald } from '../../validation/Loginvald'
 import { useState } from 'react'
 import { Link as linkrouter } from 'react-router'
-
-function Login() {
-  const [serverEroor,setServerError]= useState([])
+function SentCode() {
+  
+      
+const [serverEroor,setServerError]= useState([])
 const {register,handleSubmit,formState:{errors}}=useForm({
   resolver:yupResolver(Loginvald),
   mode:"onBlur"
@@ -40,11 +41,11 @@ const {register,handleSubmit,formState:{errors}}=useForm({
       <Box>
   <Hero sx={{position: "relative"}}>
   <Typography component="h2" variant='h3' sx={{position:"absolute", top:"60%" ,left:"80%", transform: "translate(-50%, -50%)", color:"white",fontWeight:"600px"
-}}>Login</Typography>
+}}>SentCode</Typography>
 
 <Typography component="h2" variant='h6' sx={{position:"absolute", top:"75%" ,left:"80.5%",transform: "translate(-50%, -50%)",color:"white"}}>Home </Typography>
 <ArrowForwardIcon fontSize='small' sx={{position:"absolute", top:"75%" ,left:"84%",transform: "translate(-50%, -50%)",color:"white"}}></ArrowForwardIcon>
-<Typography component="h2" variant='h6' sx={{position:"absolute", top:"75%" ,left:"87%",transform: "translate(-50%, -50%)",color:"white"}}>Login </Typography>
+<Typography component="h2" variant='h6' sx={{position:"absolute", top:"75%" ,left:"88.3%",transform: "translate(-50%, -50%)",color:"white"}}>Sentcode </Typography>
 
 
 
@@ -83,14 +84,9 @@ const {register,handleSubmit,formState:{errors}}=useForm({
 <TextField   {...register('email')} label="email"   variant="standard" 
 error={errors.email} helperText={errors.email?.message}
 />
-<TextField {...register('password')} label="password"  variant="standard" 
-error={errors.password} helperText={errors.password?.message}
-/>
-<Box sx={{display:"flex", flexDirection:"column" ,gap:"10px"}}>
-<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300" ,display:"flex" ,justifyContent:"center", alignItems:"center"}} type='submit'>Log in</Button>
 
-<Link variant='body2' sx={{marginLeft:"10px",color:"#ff7300",textDecoration:"none"}} component={linkrouter} to="/authlayout/Pages/sentcode" >Forget password?</Link>
-</Box>
+<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300",textTransform:"capitalize"}} type='submit' >submit</Button>
+
 
 
       </Box>
@@ -100,6 +96,12 @@ error={errors.password} helperText={errors.password?.message}
 
     </div>
   )
+
+
+  
+  
+  
+  
 }
 
-export default Login
+export default SentCode

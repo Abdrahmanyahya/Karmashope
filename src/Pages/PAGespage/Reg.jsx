@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Hero from '../../Component/Herosec/Hero'
 import Navbar from '../../Component/navbar/Navbar'
 import { Margin } from '@mui/icons-material'
 import { Box, positions } from '@mui/system'
-import { Button, TextField, Typography } from '@mui/material'
+import { Button, CircularProgress, TextField, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import login from "../../assets/login.jpg";
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Registerschema } from '../../validation/Registerschema'
 
 function Reg() {
 
-    const {register,handleSubmit}=useForm();
+  const[servererror,setservererror] = useState([]);
+
+
+    const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
+      resolver:yupResolver(Registerschema),
+      mode:"onBlur"
+    });
 
 
     const registerform= async(values)=>{
@@ -20,6 +29,8 @@ function Reg() {
           const responce = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Register`,values);
           console.log(responce);
         }catch(err){
+          console.log(err);
+          setservererror(err.response.data.errors);
 
         }finally{
 
@@ -62,12 +73,37 @@ function Reg() {
 
       </Box>
       <Box component="form" onSubmit={handleSubmit(registerform)} sx={{padding:"100px", display:"flex" ,flexDirection:"column",gap:"30px",}}>
-<TextField  {...register('email')} label="email"   variant="standard" />
-<TextField  {...register('password')} label="password"  variant="standard" />
-<TextField  {...register('userName')} label="userName"  variant="standard" />
-<TextField  {...register('fullName')} label="fullName"  variant="standard" />
-<TextField  {...register('phoneNumber')} label="phoneNumber"  variant="standard" />
-<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}} type='submit'>Register</Button>
+       
+       {servererror.length > 0 ?
+       
+       servererror.map((err)=>{
+       return <Typography sx={{color:"red"}}>{err}</Typography>
+       })
+       
+       :null}
+
+
+<TextField  {...register('email')} label="email"   variant="standard" 
+error={errors.email} helperText={errors.email?.message}
+/>
+<TextField  {...register('password')} label="password"  variant="standard"
+error={errors.password} helperText={errors.password?.message}
+/>
+<TextField  {...register('userName')} label="userName"  variant="standard" 
+error={errors.userName} helperText={errors.userName?.message}
+
+/>
+<TextField  {...register('fullName')} label="fullName"  variant="standard" 
+error={errors.fullName} helperText={errors.fullName?.message}
+
+/>
+<TextField  {...register('phoneNumber')} label="phoneNumber"  variant="standard"
+error={errors.phoneNumber} helperText={errors.phoneNumber?.message}
+
+/>
+<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}} type='submit' disabled={isSubmitting}>
+{ isSubmitting ? <CircularProgress></CircularProgress>:"Register"}
+</Button>
 
 
       </Box>
