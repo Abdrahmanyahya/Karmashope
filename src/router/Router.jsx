@@ -15,6 +15,7 @@ import Traking from "../Pages/PAGespage/Traking";
 import Login from "../Pages/PAGespage/Login";
 import Reg from "../Pages/PAGespage/Reg";
 import SentCode from "../Pages/sentcode/SentCode";
+import RestPassword from "../Pages/resetpassword/RestPassword";
 
 
 
@@ -99,6 +100,10 @@ element:<Login></Login>
         {
           path:"Pages/sentcode",
           element:<SentCode></SentCode>
+        },
+        {
+          path:"Pages/resetpass",
+          element:<RestPassword></RestPassword>
         }
     ]
   }

@@ -3,7 +3,7 @@ import Hero from '../../Component/Herosec/Hero'
 import Navbar from '../../Component/navbar/Navbar'
 import { Margin } from '@mui/icons-material'
 import { Box, color, positions } from '@mui/system'
-import { Button, Link, TextField, Typography } from '@mui/material'
+import { Button, CircularProgress, Link, TextField, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
@@ -15,7 +15,7 @@ import { Link as linkrouter } from 'react-router'
 
 function Login() {
   const [serverEroor,setServerError]= useState([])
-const {register,handleSubmit,formState:{errors}}=useForm({
+const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
   resolver:yupResolver(Loginvald),
   mode:"onBlur"
 });
@@ -87,7 +87,9 @@ error={errors.email} helperText={errors.email?.message}
 error={errors.password} helperText={errors.password?.message}
 />
 <Box sx={{display:"flex", flexDirection:"column" ,gap:"10px"}}>
-<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300" ,display:"flex" ,justifyContent:"center", alignItems:"center"}} type='submit'>Log in</Button>
+<Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300" ,display:"flex" ,justifyContent:"center", alignItems:"center"}}  disabled={isSubmitting} type='submit' >
+{isSubmitting? <CircularProgress></CircularProgress>:"Log in"}
+</Button>
 
 <Link variant='body2' sx={{marginLeft:"10px",color:"#ff7300",textDecoration:"none"}} component={linkrouter} to="/authlayout/Pages/sentcode" >Forget password?</Link>
 </Box>

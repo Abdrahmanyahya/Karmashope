@@ -3,7 +3,7 @@ import Hero from '../../Component/Herosec/Hero'
 import Navbar from '../../Component/navbar/Navbar'
 import { Margin } from '@mui/icons-material'
 import { Box, positions } from '@mui/system'
-import { Button, CircularProgress, TextField, Typography } from '@mui/material'
+import { Button, CircularProgress, Link, TextField, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
@@ -11,6 +11,7 @@ import login from "../../assets/login.jpg";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Registerschema } from '../../validation/Registerschema'
+import { Link as linkrouter } from 'react-router'
 
 function Reg() {
 
@@ -101,9 +102,13 @@ error={errors.fullName} helperText={errors.fullName?.message}
 error={errors.phoneNumber} helperText={errors.phoneNumber?.message}
 
 />
+<Box sx={{display:"flex",flexDirection:"column", gap:"10px"}}>
 <Button variant="outlined" sx={{color:"#ff7300",outlineColor:"#ff7300"}} type='submit' disabled={isSubmitting}>
 { isSubmitting ? <CircularProgress></CircularProgress>:"Register"}
 </Button>
+<Link variant='body2' sx={{marginLeft:"10px",color:"#ff7300",textDecoration:"none"}} component={linkrouter} to="/authlayout/Pages/sentcode" >Forget password?</Link>
+
+</Box>
 
 
       </Box>
