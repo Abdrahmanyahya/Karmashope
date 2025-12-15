@@ -52,7 +52,9 @@ ALLdata.email = Email.email
 
   return (
     <div>
+
       <Box>
+        <Navbar></Navbar>
   <Hero sx={{position: "relative"}}>
   <Typography component="h2" variant='h3' sx={{position:"absolute", top:"60%" ,left:"80%", transform: "translate(-50%, -50%)", color:"white",fontWeight:"600px"
 }}>RestPassword</Typography>

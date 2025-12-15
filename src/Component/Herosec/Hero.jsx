@@ -8,7 +8,7 @@ function Hero({ sx, children }) {
     <div>
 
 <Box sx={{height:"70vh",backgroundImage:`url(${banner})`,backgroundSize:"cover", backgroundPosition:"center",position:"relative",...sx}}>
-   <Navbar></Navbar>
+   
 {children}
 </Box>
 
