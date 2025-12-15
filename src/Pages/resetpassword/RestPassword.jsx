@@ -14,6 +14,7 @@ import { Link as linkrouter, Navigate, useNavigate } from 'react-router'
 import { Sentcodevalid } from '../../validation/Sentcodevalid'
 import { Restvalid } from '../../validation/Restvalid'
 import { red } from '@mui/material/colors'
+import axiosinstance from '../../Api/axiosinstance'
 function RestPassword() {
   
       const[serverError,setServerError]= useState([]);
@@ -37,7 +38,7 @@ ALLdata.email = Email.email
                 console.log(ALLdata);
 
         try{
-          const responce = await axios.patch(`https://knowledgeshop.runasp.net/api/Auth/Account/ResetPassword`,ALLdata);
+          const responce = await axiosinstance.patch(`/Auth/Account/ResetPassword`,ALLdata);
           console.log(responce);
           if(responce.status==200){
             navigate("/authlayout/Pages/Login");

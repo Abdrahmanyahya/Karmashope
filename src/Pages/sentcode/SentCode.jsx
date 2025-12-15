@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
 import { Link as linkrouter, Navigate, useNavigate } from 'react-router'
 import { Sentcodevalid } from '../../validation/Sentcodevalid'
+import axiosinstance from '../../Api/axiosinstance'
 function SentCode() {
   
       const navigate= useNavigate();
@@ -25,7 +26,7 @@ const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
         console.log(values);
 localStorage.setItem("email", JSON.stringify({ email: values.email }));
         try{
-          const responce = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/SendCode`,values);
+          const responce = await axiosinstance.post(`/Auth/Account/SendCode`,values);
           console.log(responce);
           if(responce.status==200){
             navigate("/authlayout/Pages/resetpass");

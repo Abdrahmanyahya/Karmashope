@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Loginvald } from '../../validation/Loginvald'
 import { useState } from 'react'
 import { Link as linkrouter } from 'react-router'
+import axiosinstance from '../../Api/axiosinstance'
 
 function Login() {
   const [serverEroor,setServerError]= useState([])
@@ -24,7 +25,7 @@ const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
     const loginform= async(values)=>{
         console.log(values);
         try{
-          const responce = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Login`,values);
+          const responce = await axiosinstance.post(`/Auth/Account/Login`,values);
           console.log(responce);
         }catch(err){
           console.log(err);

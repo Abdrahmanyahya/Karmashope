@@ -12,6 +12,7 @@ import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Registerschema } from '../../validation/Registerschema'
 import { Link as linkrouter } from 'react-router'
+import axiosinstance from '../../Api/axiosinstance'
 
 function Reg() {
 
@@ -27,7 +28,7 @@ function Reg() {
     const registerform= async(values)=>{
         console.log(values);
         try{
-          const responce = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Register`,values);
+          const responce = await axiosinstance.post(`/Auth/Account/Register`,values);
           console.log(responce);
         }catch(err){
           console.log(err);
