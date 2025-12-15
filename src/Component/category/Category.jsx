@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import axiosinstance from '../../Api/axiosinstance';
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, CircularProgress, Grid, Typography } from '@mui/material';
+import {useQuery} from '@tanstack/react-query'
+import { data } from 'react-router';
+import { usecategorys } from '../../hooks/usecategorys';
 
 function Category() {
 
-   const [categorys,setcategys] = useState([]);
-const getCategory = async ()=>{
-    try{
-
-    const responce = await axiosinstance.get('/Categories');
-    console.log(responce);
-    setcategys(responce.data);
-}catch(err){
-    console.log(err);
-
-}
    
-   }
+
+   const {data,isLoading,isError}= usecategorys();
+
+   
+ if(isLoading)return <CircularProgress></CircularProgress>
+    if(isError) return <Typography>Error</Typography>
 
 
-useEffect(()=>{
-getCategory();
-},[])
 
   return (
     <div>
@@ -32,7 +26,7 @@ getCategory();
     
         <Grid container spacing={3}>
             {
-           categorys.map((cat)=>{
+           data.map((cat)=>{
             return <Grid item size={{xs:12,sm:6,md:3,lg:4}}>
 
         <Card sx={{padding:"20px", textAlign:"center"}}>{cat.name}</Card>
@@ -52,4 +46,4 @@ getCategory();
   )
 }
 
-export default Category
+export default Category;
