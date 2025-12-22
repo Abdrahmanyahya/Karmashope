@@ -13,9 +13,11 @@ import { useState } from 'react'
 import { Link as linkrouter, Navigate, useNavigate } from 'react-router'
 import { Sentcodevalid } from '../../validation/Sentcodevalid'
 import axiosinstance from '../../Api/axiosinstance'
+import useSentCode from '../../hooks/useSentCode'
 function SentCode() {
   
-      const navigate= useNavigate();
+
+  const {mutation} = useSentCode();
 const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
   resolver:yupResolver(Sentcodevalid),
   mode:"onBlur"
@@ -25,17 +27,7 @@ const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
     const sentcodeform= async(values)=>{
         console.log(values);
 localStorage.setItem("email", JSON.stringify({ email: values.email }));
-        try{
-          const responce = await axiosinstance.post(`/Auth/Account/SendCode`,values);
-          console.log(responce);
-          if(responce.status==200){
-            navigate("/authlayout/Pages/resetpass");
-          }
-        }catch(err){
-
-        }finally{
-
-        }
+    await mutation.mutateAsync(values);
     }
 
   return (

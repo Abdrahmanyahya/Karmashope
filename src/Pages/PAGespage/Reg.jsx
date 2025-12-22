@@ -11,13 +11,17 @@ import login from "../../assets/login.jpg";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Registerschema } from '../../validation/Registerschema'
-import { Link as linkrouter } from 'react-router'
+import { Link as linkrouter, useNavigate } from 'react-router'
 import axiosinstance from '../../Api/axiosinstance'
+import { useMutation } from '@tanstack/react-query'
+import useRegister from '../../hooks/useRegister'
 
 function Reg() {
 
-  const[servererror,setservererror] = useState([]);
 
+
+     
+  const {servererror,mutation} = useRegister()
 
     const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
       resolver:yupResolver(Registerschema),
@@ -27,16 +31,7 @@ function Reg() {
 
     const registerform= async(values)=>{
         console.log(values);
-        try{
-          const responce = await axiosinstance.post(`/Auth/Account/Register`,values);
-          console.log(responce);
-        }catch(err){
-          console.log(err);
-          setservererror(err.response.data.errors);
-
-        }finally{
-
-        }
+        await mutation.mutateAsync(values);
     }
   return (
     <div>

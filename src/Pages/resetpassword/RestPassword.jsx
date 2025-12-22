@@ -15,11 +15,10 @@ import { Sentcodevalid } from '../../validation/Sentcodevalid'
 import { Restvalid } from '../../validation/Restvalid'
 import { red } from '@mui/material/colors'
 import axiosinstance from '../../Api/axiosinstance'
+import useResetpass from '../../hooks/useRestpass'
 function RestPassword() {
   
-      const[serverError,setServerError]= useState([]);
-
-      const navigate= useNavigate();
+const {serverError,mutation} = useResetpass();
 const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
   resolver:yupResolver(Restvalid),
   mode:"onBlur"
@@ -27,27 +26,8 @@ const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
 
 
     const resetform= async(values)=>{
-        const Email = JSON.parse(localStorage.getItem("email")); 
-        console.log(Email)
-        const Code=values.code;
-        const Newpass=values.newPassword;
-          const ALLdata ={}
-       ALLdata.newPassword=Newpass;
-        ALLdata.code=Code;
-ALLdata.email = Email.email
-                console.log(ALLdata);
-
-        try{
-          const responce = await axiosinstance.patch(`/Auth/Account/ResetPassword`,ALLdata);
-          console.log(responce);
-          if(responce.status==200){
-            navigate("/authlayout/Pages/Login");
-          }
-          
-        }catch(err){
-        }finally{
-
-        }
+       
+     await mutation.mutateAsync(values);
     }
 
   return (

@@ -13,9 +13,10 @@ import { Loginvald } from '../../validation/Loginvald'
 import { useState } from 'react'
 import { Link as linkrouter } from 'react-router'
 import axiosinstance from '../../Api/axiosinstance'
+import useLogin from '../../hooks/useLogin'
 
 function Login() {
-  const [serverEroor,setServerError]= useState([])
+  const {serverEroor,mutation} = useLogin();
 const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
   resolver:yupResolver(Loginvald),
   mode:"onBlur"
@@ -24,16 +25,7 @@ const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
 
     const loginform= async(values)=>{
         console.log(values);
-        try{
-          const responce = await axiosinstance.post(`/Auth/Account/Login`,values);
-          console.log(responce);
-        }catch(err){
-          console.log(err);
-          setServerError(err.responce.data.errors);
-
-        }finally{
-
-        }
+       await mutation.mutateAsync(values);
     }
 
   return (
